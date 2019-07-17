@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>Google Books Search Engine</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <title>Google Search Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+</head>
+<body ng-app="googleBookApp" ng-controller="googleBookCtrl">
+   <div class="jumbotron jumbotron-fluid">
+    <div class="overlay"></div>
+    <div class="inner">
+    <div class="container">
+        <h1 class="display-4 white externalHeaderFont text-center">Search for the book</h1>
+        <p class="display-10 externalSubHeaderFont white lead text-center">Find your favourite book in google</p>
+    </div>
+    <div class="container search-area input-group">
+        <input id="search-bar"  type="text" ng-model="searchQuery" class="form-control" placeholder="Search for Book and press enter..." aria-label="Search Book"
+            aria-describedby="button-addon2" ng-keydown="$event.keyCode === 13 && searchBooks()">
+        <div class="input-group-append">
+            <button id="search-btn" ng-click="searchBooks()"  class="btn" type="button" id="button-addon2">Search</button>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="display: flex; padding: 16px;"
+      ng-repeat="item in results">
+      <div style="display: flex; height: 13em;" class="test">
+      <img class="imageBorder" src="{{item.volumeInfo.imageLinks.smallThumbnail}}" width="128px;" alt="">
+      <div class="volumeInfo">
+        <span class="title">{{item.volumeInfo.title}}</span>
+        <br />
+        <span class="author" ng-repeat="author in item.volumeInfo.authors">By: {{author}}</span>
+        <br>
+        <span class="published">Published By:
+          {{item.volumeInfo.publisher}}, {{item.volumeInfo.publishedDate}}</span>
+        <br />
+            <div class="readmorecontainer">
+              <a class="read-more" target="_blank" ng-href="{{item.volumeInfo.infoLink}}">Read More</a>
+            </div>
+      </div>
+</div>
+    </div>
+  </div>
+</div>
+<button onclick="topFunction()" id="backToTopBtn" title="Go to top">Top</button>
+  <script src="main.js"></script>
+  <!-- for babel transpilation -->
+  <!-- <script src="main.min.js"></script> -->
+</body>
+</html>
