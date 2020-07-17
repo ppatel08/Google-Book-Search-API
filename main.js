@@ -32,7 +32,7 @@ var app = angular.module('googleBookApp', []);
 app.controller('googleBookCtrl', function ($scope, $http) {
   $scope.searchQuery = "";
   $scope.maxResult = 39;  // Google Book Api value must be between 0-40
-  $scope.key = 'AIzaSyCwpr60P6YWslg8fqICun-TcFZF-85x_lE';
+  $scope.key = 'Your Key';
 
   $scope.searchBooks = function () {
     if ($scope.searchQuery && $scope.searchQuery.length > 0) {
